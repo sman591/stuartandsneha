@@ -30,6 +30,11 @@ async function handleEvent(event) {
       }
     }
 
+    const url = new URL(event.request.url)
+    if (url.pathname === '' || url.pathname === '/') {
+      return Response.redirect("https://www.zola.com/wedding/stuartandsneha", 302);
+    }
+
     const page = await getAssetFromKV(event, options)
 
     // allow headers to be altered
